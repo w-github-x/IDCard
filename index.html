@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>身份证号码验证工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>身份证号码批量验证工具</h1>
+            <div class="stats">
+                <span>总数：<span id="totalCount">0</span></span>
+                <span>有效：<span id="validCount">0</span></span>
+                <span>无效：<span id="invalidCount">0</span></span>
+            </div>
+            <div class="actions">
+                <select id="filterSelect">
+                    <option value="all">显示全部</option>
+                    <option value="valid">仅显示有效</option>
+                    <option value="invalid">仅显示无效</option>
+                </select>
+                <div class="age-filter">
+                    <select id="ageFilterType">
+                        <option value="none">年龄筛选</option>
+                        <option value="gt">大于</option>
+                        <option value="lt">小于</option>
+                        <option value="eq">等于</option>
+                    </select>
+                    <input type="number" id="ageFilterValue" min="0" max="150" placeholder="年龄" disabled>
+                </div>
+                <button id="clearBtn">清空数据</button>
+                <button id="downloadBtn" disabled>导出结果</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="input-panel">
+                <h2>数据输入</h2>
+                <div class="input-container">
+                    <div class="line-numbers" id="inputLineNumbers"></div>
+                    <textarea 
+                        id="inputArea" 
+                        placeholder="请输入或粘贴身份证号码，每行一个..."
+                    ></textarea>
+                </div>
+            </div>
+
+            <div class="result-panel">
+                <h2>验证结果</h2>
+                <div id="resultList" class="result-list"></div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>使用说明</h2>
+            <div class="instruction-grid">
+                <div>
+                    <h3>数据要求</h3>
+                    <ul>
+                        <li>支持从Excel直接复制粘贴数据</li>
+                        <li>每行数据仅处理一个身份证号</li>
+                        <li>自动识别18位数字和X的组合</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>验证规则</h3>
+                    <ul>
+                        <li>完整的省份地区代码验证</li>
+                        <li>严格的出生日期合法性检查</li>
+                        <li>GB11643-1999标准校验码算法</li>
+                        <li>支持末位X/x大小写处理</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>功能特点</h3>
+                    <ul>
+                        <li>实时验证和错误提示</li>
+                        <li>支持筛选显示验证结果</li>
+                        <li>导出详细验证报告</li>
+                        <li>显示省份和出生日期信息</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="areaCode.js"></script>
+    <script src="validator.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
